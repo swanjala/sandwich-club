@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -23,8 +24,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         parseJSONdata();
-        loadUI();
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        parseJSONdata();
     }
 
     private void parseJSONdata(){
@@ -42,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
 
+        loadUI(JsonUtils.sandwichData);
     }
 
-    private void loadUI(){
+    private void loadUI(JSONArray sandwichLoadedData){
 
-
+//    Data goes to RecyclerView
+        Log.d("DataSampel", String.valueOf(sandwichLoadedData));
     }
 
 

@@ -10,12 +10,13 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class JsonUtils {
 
-    private static Sandwich sandwich = new Sandwich();
-    private static JSONArray sandwichData;
+
+    public static JSONArray sandwichData;
 
     public static void jsonDataStream(String[] json) throws JSONException {
         JSONArray sandwichArray = null;
@@ -25,14 +26,22 @@ public class JsonUtils {
 
     }
 
-    public static Sandwich parseSandwichJson(ArrayList dataCurrent) throws JSONException {
+    public static Sandwich parseSandwichJson(JSONObject dataCurrent) throws JSONException {
+//        JSONObject data;
+//        data= dataCurrent.getJSONObject(); --> remember to add this in your recycler view
 
-           sandwich.setDescription();
-           sandwich.setPlaceOfOrigin();
-           sandwich.setImage();
-           sandwich.setIngredients();
-           sandwich.setAlsoKnownAs();
-           sandwich.setMainName();
+        List<String> alternativeName = Arrays.asList(dataCurrent.
+                        getString("alsoKnownAs").split(","));
+
+        List<String> ingredientsList = Arrays.asList(dataCurrent.
+                getString("ingredients").split(","));
+
+        Sandwich sandwich = new Sandwich(dataCurrent.getString("mainName"),
+                alternativeName,
+                dataCurrent.getString("placeOfOrigin"),
+                dataCurrent.getString("description"),
+                dataCurrent.getString("image"),ingredientsList
+                );
 
 
         return sandwich;
