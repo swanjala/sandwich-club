@@ -16,33 +16,56 @@ import java.util.List;
 public class JsonUtils {
 
 
-    public static JSONArray sandwichData;
+    public static JSONArray sandwichArrayData;
+    public static JSONArray detailsArrayData;
 
-    public static void jsonDataStream(String[] json) throws JSONException {
-        JSONArray sandwichArray = null;
+    public static void jsonNameStream(String[] json, String [] details) throws JSONException {
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            sandwichData = new JSONArray(json);
+            sandwichArrayData = new JSONArray(json);
+            detailsArrayData = new JSONArray(details);
         }
 
     }
 
-    public static Sandwich parseSandwichJson(JSONObject dataCurrent) throws JSONException {
-//        JSONObject data;
-//        data= dataCurrent.getJSONObject(); --> remember to add this in your recycler view
+    public static Sandwich parseSandwichJson(String dataCurrent) throws JSONException {
+        Sandwich sandwichInstace = new Sandwich();
+        JSONObject dataObject  = new JSONObject(dataCurrent);
 
-        List<String> alternativeName = Arrays.asList(dataCurrent.
-                        getString("alsoKnownAs").split(","));
+        List<String> alternativeName = Arrays
+                .asList(dataObject.
+                        getString("name")
+                .split(","));
 
-        List<String> ingredientsList = Arrays.asList(dataCurrent.
-                getString("ingredients").split(","));
+        JSONArray alternativeNameArray = new JSONArray(String.valueOf(alternativeName));
 
-        Sandwich sandwich = new Sandwich(dataCurrent.getString("mainName"),
-                alternativeName,
-                dataCurrent.getString("placeOfOrigin"),
-                dataCurrent.getString("description"),
-                dataCurrent.getString("image"),ingredientsList
+
+        JSONObject obj = alternativeNameArray
+                .getJSONObject(0);
+
+        List<String> alsoKnownAs =Arrays.asList(obj
+                .getString("alsoKnownAs")
+                .replace("[","")
+                .replace("]","")
+                .replace("\"","")
+                .split(","));
+
+
+        List<String> ingredientsList = Arrays
+                .asList(dataObject.getString("ingredients")
+                .replace("[","")
+                .replace("]","").replace("\"","")
+                .split(","));
+
+        sandwichInstace.setImage(dataObject.getString("image"));
+
+
+        Sandwich sandwich = new Sandwich(obj.getString("mainName"),
+                alsoKnownAs,
+                dataObject.getString("placeOfOrigin"),
+                dataObject.getString("description"),
+                dataObject.getString("image"),ingredientsList
                 );
-
 
         return sandwich;
     }

@@ -1,59 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.udacity.sandwichclub.DetailActivity">
+    tools:context="com.udacity.sandwichclub.DetailActivity"
+    android:orientation="vertical"
+    android:overScrollMode="always">
+
+    <View
+
+        android:id="@+id/view2"
+        android:layout_width="@dimen/view2_width_dimen"
+        android:layout_height="@dimen/view2_height_dimen"
+        android:layout_marginEnd="@dimen/view2_margin_end_dimen"
+        android:layout_marginLeft="@dimen/view2_margin_left_dimen"
+        android:layout_marginRight="@dimen/view2_margin_right_dimen"
+        android:layout_marginStart="@dimen/view2_layout_margin_start_dimen"
+        android:layout_marginTop="@dimen/view2_layout_margin_top_dimen"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_iv" />
+
+    <View
+
+        android:id="@+id/view3"
+        android:layout_width="@dimen/view3_width_dimen"
+        android:layout_height="@dimen/view2_height_dimen"
+        android:layout_marginEnd="@dimen/view2_margin_end_dimen"
+        android:layout_marginLeft="@dimen/view3_margin_left"
+        android:layout_marginRight="@dimen/view3_margin_right"
+        android:layout_marginStart="@dimen/view3_layout_margins_start"
+        android:layout_marginTop="@dimen/view3_layout_margin_top"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_iv" />
+
+    <View
+
+        android:id="@+id/view"
+        android:layout_width="@dimen/view_layout_width"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/view_margin_bottom"
+        android:layout_marginEnd="@dimen/view_layout_margin_end"
+        android:layout_marginLeft="@dimen/view_layout_margin_left"
+        android:layout_marginRight="@dimen/view_layout_margin_right"
+        android:layout_marginStart="@dimen/view_layout_margin_start"
+        android:layout_marginTop="@dimen/view_layout_margin_top"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_iv"
+        app:layout_constraintVertical_bias="0.47" />
 
     <ImageView
         android:id="@+id/image_iv"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="@dimen/image_view_height"
+        android:layout_marginEnd="@dimen/image_view_margin_end"
+        android:layout_marginLeft="@dimen/image_view_margin_left"
+        android:layout_marginRight="@dimen/image_view_margin_right"
+        android:layout_marginStart="@dimen/image_view_margin_start"
+        android:layout_marginTop="@dimen/image_view_margin_top"
         android:adjustViewBounds="true"
         android:contentDescription="@string/sandwich_picture_content_description"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+
+        android:layout_width="@dimen/dec_view_layout_width"
+        android:layout_height="@dimen/dec_view_layout_height"
+        android:layout_marginEnd="@dimen/dec_view_margin_end"
+        android:layout_marginLeft="@dimen/dec_view_margin_left"
+        android:layout_marginRight="@dimen/dev_view_margin_right"
+        android:layout_marginStart="@dimen/dec_view_margin_start"
+        android:layout_marginTop="@dimen/dec_view_margin_stop"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_iv" />
+
 
     <TextView
-        android:id="@+id/origin_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_width="@dimen/tv3_width"
+        android:layout_height="@dimen/tv3_height"
+        android:layout_marginEnd="@dimen/tv3_end_margin"
+        android:layout_marginLeft="@dimen/tv3_margin_left"
+        android:layout_marginRight="@dimen/tv3_margin_right"
+        android:layout_marginStart="@dimen/tv3_margin_start"
+        android:layout_marginTop="@dimen/tv3_margin_top"
+        android:background="@color/colorAccent"
+        android:padding="@dimen/tv3_padding"
         android:text="@string/detail_also_known_as_label"
-        android:textStyle="bold" />
+        android:textColor="@color/fontColor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_iv" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvIngredientsLabel"
+        android:layout_width="@dimen/tv_ingredients_label_width"
+        android:layout_height="@dimen/tv_ingredients_label_height"
+        android:layout_marginEnd="@dimen/tv_ingredients_label_margin_end"
+        android:layout_marginLeft="@dimen/tv_ingredients_label_margin_left"
+        android:layout_marginRight="@dimen/tv_ingredients_label_margin_right"
+        android:layout_marginStart="@dimen/tv_ingredients_label_margin_start"
+        android:layout_marginTop="@dimen/tv_ingredients_label_margin_top"
+        android:background="@color/colorAccent"
+        android:padding="@dimen/tv_ingredients_label_padding"
         android:text="@string/detail_ingredients_label"
-        android:textStyle="bold" />
+        android:textColor="@color/fontColor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_iv" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_width="@dimen/tv_place_of_origin_label_width"
+        android:layout_height="@dimen/tv_place_of_origin_label_height"
+        android:layout_marginEnd="@dimen/tv_place_of_origin_label_margin_end"
+        android:layout_marginLeft="@dimen/tv_place_of_origin_label_margin_left"
+        android:layout_marginRight="@dimen/tv_place_of_origin_label_margin_right"
+        android:layout_marginStart="@dimen/tv_place_of_origin_label_margin_start"
+        android:layout_marginTop="@dimen/tv_place_of_origin_label_margin_top"
+        android:background="@color/colorAccent"
+        android:padding="@dimen/tv_place_of_origin_label_padding"
         android:text="@string/detail_place_of_origin_label"
-        android:textStyle="bold" />
+        android:textColor="@color/fontColor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+
 
     <TextView
-        android:id="@+id/description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/ingredients_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/also_known_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="@dimen/tv_description_label_width"
+        android:layout_height="@dimen/tv_description_label_height"
+        android:layout_marginEnd="@dimen/tv_description_label_margin_end"
+        android:layout_marginLeft="@dimen/tv_description_label_margin_left"
+        android:layout_marginRight="@dimen/tv_description_label_margin_right"
+        android:layout_marginStart="@dimen/tv_description_label_margin_start"
+        android:layout_marginTop="@dimen/tv_description_label_margin_top"
+        android:background="@color/colorAccent"
+        android:padding="@dimen/tv_description_label_padding"
         android:text="@string/detail_description_label"
-        android:textStyle="bold" />
-</FrameLayout>
+        android:textColor="@color/fontColor"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+
+    <TextView
+        android:id="@+id/tv_descripiton_text"
+        android:layout_width="@dimen/tv_description_text_width"
+        android:layout_height="@dimen/tv_description_text_height"
+        android:layout_marginEnd="@dimen/tv_description_text_margin_end"
+        android:layout_marginLeft="@dimen/tv_description_text_margin_left"
+        android:layout_marginRight="@dimen/tv_description_text_margin_right"
+        android:layout_marginStart="@dimen/tv_description_text_margin_start"
+        android:layout_marginTop="@dimen/tv_description_text_margin_stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.939"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_place_of_origin_text"
+        android:layout_width="@dimen/tv_place_of_origin_text_width"
+        android:layout_height="@dimen/tv_place_of_origin_text_height"
+        android:layout_marginEnd="@dimen/tv_place_of_origin_text_margin_end"
+        android:layout_marginLeft="@dimen/tv_place_of_origin_text_margin_left"
+        android:layout_marginRight="@dimen/tv_place_of_origin_text_margin_right"
+        android:layout_marginStart="@dimen/tv_place_of_origin_text_margin_start"
+        android:layout_marginTop="@dimen/tv_place_of_origin_text_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_also_known_as_text"
+        android:layout_width="@dimen/tv_also_known_as_text_width"
+        android:layout_height="@dimen/tv_also_known_as_text_height"
+        android:layout_marginEnd="@dimen/tv_also_known_as_text_margin_end"
+        android:layout_marginLeft="@dimen/tv_also_known_as_text_margin_left"
+        android:layout_marginRight="@dimen/tv_also_known_as_text_margin_right"
+        android:layout_marginStart="@dimen/tv_also_known_as_text_margin_start"
+        android:layout_marginTop="@dimen/tv_also_known_as_text_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ingredients_text"
+        android:layout_width="@dimen/tv_ingredients_text_width"
+        android:layout_height="@dimen/tv_ingredients_text_height"
+        android:layout_marginEnd="@dimen/tv_ingredients_text_margin_end"
+        android:layout_marginLeft="@dimen/tv_ingredients_text_margin_left"
+        android:layout_marginRight="@dimen/tv_ingredients_text_margin_right"
+        android:layout_marginStart="@dimen/tv_ingredients_text_margin_start"
+        android:layout_marginTop="@dimen/tv_ingredients_text_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
