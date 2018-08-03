@@ -21,30 +21,35 @@ import org.json.JSONObject;
 
 public class MainActivityAdapter extends
         RecyclerView.Adapter<MainActivityAdapter.MainActivityViewAdapter> {
+
     private JSONArray mSandwichSet;
     private JSONArray mDetailSet;
     private LayoutInflater layoutInflater;
     private Context context;
     Sandwich sandwich = new Sandwich();
 
-    public MainActivityAdapter(Context context, JSONArray sandwichdata, JSONArray mDetailSet){
+    public MainActivityAdapter(Context context, JSONArray sandwichdata, JSONArray mDetailSet) {
+
         this.mSandwichSet = sandwichdata;
-         this.mDetailSet = mDetailSet;
+        this.mDetailSet = mDetailSet;
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
+
     }
 
     @Override
-    public MainActivityViewAdapter onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = layoutInflater.inflate(R.layout.activity_main_card_view, parent, false);
+    public MainActivityViewAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = layoutInflater
+                .inflate(R.layout.activity_main_card_view,
+                        parent, false);
         MainActivityViewAdapter viewHolder = new MainActivityViewAdapter(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MainActivityViewAdapter holder, int position){
+    public void onBindViewHolder(MainActivityViewAdapter holder, int position) {
         try {
-            holder.setData(mSandwichSet,mDetailSet, position);
+            holder.setData(mSandwichSet, mDetailSet, position);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -55,16 +60,15 @@ public class MainActivityAdapter extends
         return mSandwichSet.length();
     }
 
-    class MainActivityViewAdapter extends RecyclerView.ViewHolder{
+    class MainActivityViewAdapter extends RecyclerView.ViewHolder {
         TextView tv_name;
         Button bt_view_sandwich_details;
         ImageView img_sandwich_photo;
         int position;
 
-        private String sandwichName;
         private JSONObject dataObject;
 
-        public MainActivityViewAdapter(View mainView){
+        public MainActivityViewAdapter(View mainView) {
             super(mainView);
             tv_name = mainView.findViewById(R.id.tv_sandwich_name);
             img_sandwich_photo = mainView.findViewById(R.id.img_sandwich);
@@ -74,26 +78,14 @@ public class MainActivityAdapter extends
         }
 
 
-        public void setData(final JSONArray currentData,JSONArray currentDetailSet,
+        public void setData(final JSONArray currentData,
+                            JSONArray currentDetailSet,
                             final int position) throws JSONException {
-           dataObject  = new JSONObject(currentDetailSet.getString(position));
+
+            dataObject = new JSONObject(currentDetailSet.getString(position));
 
             sandwich.setMainName(currentData.getString(position));
             sandwich.setImage(dataObject.getString("image"));
-
-
-          //  Log.d("long version",String.valueOf(dataObject));
-//            sandwich.setDescription(String.valueOf(dataObject.getString("placeOfOrigin")));
-
-
-//            Sandwich sandwich = JsonUtils.parseSandwichJson(dataObject);
-            //this.dataObject = currentData.getJSONObject(position) ;
-//            this.sandwichName = sandwich.getMainName();
-            //this.img_sandwich_photo = dataObject.getString("url for the image")
-            Log.d("sandwich name",sandwich.getMainName());
-//            Log.d("Details", sandwich.getDescription());
-            Log.d("Sandwidch Image", String.valueOf(dataObject.getString("image")));
-
             this.tv_name.setText(sandwich.getMainName());
             Picasso.with(context)
                     .load(sandwich.getImage())
@@ -104,8 +96,8 @@ public class MainActivityAdapter extends
             bt_view_sandwich_details.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context,DetailActivity.class);
-                    intent.putExtra("extra_position",position);
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("extra_position", position);
 
                     context.startActivity(intent);
                 }

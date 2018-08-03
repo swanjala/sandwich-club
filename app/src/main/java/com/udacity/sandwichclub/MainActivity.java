@@ -50,15 +50,11 @@ public class MainActivity extends AppCompatActivity {
         final String[] sandwiches = getResources().getStringArray(R.array.sandwich_names);
         final String[] sandwichDetails = getResources().getStringArray(R.array.sandwich_details);
 
-//            final JSONObject sandwichDetails = new JSONObject(String.valueOf(getResources()
-//                    .getStringArray(R.array.sandwich_details)));
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     JsonUtils.jsonNameStream(sandwiches, sandwichDetails);
-//                   JSONArray details = JsonUtils.jsonNameStream(sandwichDetails);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -69,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadUI() {
-
-        Log.d("Sandwich Details",String.valueOf(String.valueOf(JsonUtils.sandwichArrayData)));
-        Log.d("Sandwich Details Array",String.valueOf(String.valueOf(JsonUtils.detailsArrayData)));
 
         RecyclerView mRecyclerView = findViewById(R.id.rv_sandwiches);
         mRecyclerView.setHasFixedSize(true);
@@ -85,12 +78,5 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-    }
-
-
-    private void launchDetailActivity(int position) {
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.EXTRA_POSITION, position);
-        startActivity(intent);
     }
 }

@@ -18,13 +18,12 @@ public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
-    TextView tv_description_text,tv_place_of_origin,tv_also_know_as,tv_ingredients;
+    TextView tv_description_text, tv_place_of_origin, tv_also_know_as, tv_ingredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Log.d("Executing this", "Executing this");
         ImageView ingredientsIv = findViewById(R.id.image_iv);
         tv_description_text = findViewById(R.id.tv_descripiton_text);
         tv_place_of_origin = findViewById(R.id.tv_place_of_origin_text);
@@ -34,13 +33,11 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent == null) {
-            Log.d("null intent", "null intent");
             closeOnError();
         }
 
-        int position = intent.getIntExtra(EXTRA_POSITION,DEFAULT_POSITION);
+        int position = intent.getIntExtra(EXTRA_POSITION, DEFAULT_POSITION);
         if (position == DEFAULT_POSITION) {
-            Log.d("bad position", "null intent");
             closeOnError();
             return;
         }
@@ -54,8 +51,6 @@ public class DetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if (sandwich == null) {
-            // Sandwich data unavailable
-
             closeOnError();
             return;
         }
@@ -75,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void populateUI(Sandwich sandwich) {
 
-        String alsoKnownAsText= "";
+        String alsoKnownAsText = "";
         String ingredientsText = "";
         tv_description_text.setText(sandwich.getDescription());
         tv_place_of_origin.setText(sandwich.getPlaceOfOrigin());
