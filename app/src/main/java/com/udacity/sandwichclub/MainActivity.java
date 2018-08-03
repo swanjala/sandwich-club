@@ -3,6 +3,9 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +17,8 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONStringer;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,38 +28,63 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        parseJSONdata();
-
+        try {
+            parseJSONdata();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        parseJSONdata();
+        try {
+            parseJSONdata();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void parseJSONdata(){
+    private void parseJSONdata() throws JSONException {
 
         final String[] sandwiches = getResources().getStringArray(R.array.sandwich_names);
+        final String[] sandwichDetails = getResources().getStringArray(R.array.sandwich_details);
+
+//            final JSONObject sandwichDetails = new JSONObject(String.valueOf(getResources()
+//                    .getStringArray(R.array.sandwich_details)));
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    JsonUtils.jsonDataStream(sandwiches);
+                    JsonUtils.jsonNameStream(sandwiches, sandwichDetails);
+//                   JSONArray details = JsonUtils.jsonNameStream(sandwichDetails);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
 
-        loadUI(JsonUtils.sandwichData);
+        loadUI();
     }
 
-    private void loadUI(JSONArray sandwichLoadedData){
+    private void loadUI() {
 
-//    Data goes to RecyclerView
-        Log.d("DataSampel", String.valueOf(sandwichLoadedData));
+        Log.d("Sandwich Details",String.valueOf(String.valueOf(JsonUtils.sandwichArrayData)));
+        Log.d("Sandwich Details Array",String.valueOf(String.valueOf(JsonUtils.detailsArrayData)));
+
+        RecyclerView mRecyclerView = findViewById(R.id.rv_sandwiches);
+        mRecyclerView.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager mLayoutmanager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutmanager);
+
+         RecyclerView.Adapter mAdapter = new MainActivityAdapter(this,
+                 JsonUtils.sandwichArrayData, JsonUtils.detailsArrayData);
+
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
     }
 
 
