@@ -58,6 +58,9 @@ public class DetailActivity extends AppCompatActivity {
         populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .placeholder(R.drawable.sandwich_half_hi)
+                .fit()
+                .centerCrop()
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
@@ -87,7 +90,7 @@ public class DetailActivity extends AppCompatActivity {
 
         for (int dataCount = 0; dataCount < sandwich.getIngredients().size();
              dataCount++) {
-            ingredientsText = alsoKnownAsText
+            ingredientsText = ingredientsText
                     .concat(sandwich
                             .getIngredients()
                             .get(dataCount) + "\n");

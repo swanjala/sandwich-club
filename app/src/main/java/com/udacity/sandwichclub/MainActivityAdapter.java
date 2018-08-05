@@ -77,7 +77,6 @@ public class MainActivityAdapter extends
 
         }
 
-
         public void setData(final JSONArray currentData,
                             JSONArray currentDetailSet,
                             final int position) throws JSONException {
@@ -89,6 +88,7 @@ public class MainActivityAdapter extends
             this.tv_name.setText(sandwich.getMainName());
             Picasso.with(context)
                     .load(sandwich.getImage())
+                    .placeholder(R.drawable.sandwich_half_hi)
                     .fit()
                     .centerCrop()
                     .into(img_sandwich_photo);
